@@ -10,7 +10,7 @@ import com.electroweak.game.entity.component.PositionComponent
 import com.electroweak.game.entity.component.SizeComponent
 import com.electroweak.game.entity.component.TextureComponent
 
-class TextureRenderSystem() : EntitySystem() {
+class TextureRenderSystem : EntitySystem() {
 
     val batch: SpriteBatch = SpriteBatch()
     lateinit var entities: ImmutableArray<Entity>

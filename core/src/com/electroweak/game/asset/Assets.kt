@@ -28,7 +28,8 @@ object Assets {
         ASTEROID_TINY("asteroid_tiny", false),
         PLAYER("player", false),
         CANNON("cannon", false),
-        CANNON_DOUBLE("cannon_double", false)
+        CANNON_DOUBLE("cannon_double", false),
+        BULLET("bullet", false)
     }
 
     fun loadAllResources() {

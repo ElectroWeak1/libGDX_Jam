@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.electroweak.game.asset.Assets
+import com.electroweak.game.entity.system.FreeBulletSystem
 import com.electroweak.game.entity.system.TextureRenderSystem
+import com.electroweak.game.entity.system.VelocitySystem
 import com.electroweak.game.input.InputHandler
 import com.electroweak.game.screens.GameplayScreen
 
@@ -18,6 +20,8 @@ class Main : Game() {
 
     lateinit var engine: Engine
     lateinit var textureRenderSystem: TextureRenderSystem
+    lateinit var velocitySystem: VelocitySystem
+    lateinit var freeBulletSystem: FreeBulletSystem
 
     lateinit var gameplayScreen: GameplayScreen
 
@@ -28,7 +32,12 @@ class Main : Game() {
 
         engine = Engine()
         textureRenderSystem = TextureRenderSystem()
+        velocitySystem = VelocitySystem()
+        freeBulletSystem = FreeBulletSystem()
+
         engine.addSystem(textureRenderSystem)
+        engine.addSystem(velocitySystem)
+        engine.addSystem(freeBulletSystem)
 
         inputHandler = InputHandler()
         Gdx.input.inputProcessor = inputHandler
@@ -44,7 +53,7 @@ class Main : Game() {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
 
-        textureRenderSystem.update(Gdx.graphics.deltaTime)
+        engine.update(Gdx.graphics.deltaTime)
 
         super.render()
     }
