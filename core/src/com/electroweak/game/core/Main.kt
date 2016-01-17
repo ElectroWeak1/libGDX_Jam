@@ -7,11 +7,13 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.electroweak.game.asset.Assets
+import com.electroweak.game.entity.system.CollisionSystem
 import com.electroweak.game.entity.system.FreeBulletSystem
 import com.electroweak.game.entity.system.TextureRenderSystem
 import com.electroweak.game.entity.system.VelocitySystem
 import com.electroweak.game.input.InputHandler
 import com.electroweak.game.screens.GameplayScreen
+import com.electroweak.game.screens.MainMenuScreen
 
 class Main : Game() {
 
@@ -22,8 +24,10 @@ class Main : Game() {
     lateinit var textureRenderSystem: TextureRenderSystem
     lateinit var velocitySystem: VelocitySystem
     lateinit var freeBulletSystem: FreeBulletSystem
+    lateinit var collisionSystem: CollisionSystem
 
     lateinit var gameplayScreen: GameplayScreen
+    lateinit var mainMenuScreen: MainMenuScreen
 
     override fun create() {
         Assets.loadAllResources()
@@ -34,16 +38,20 @@ class Main : Game() {
         textureRenderSystem = TextureRenderSystem()
         velocitySystem = VelocitySystem()
         freeBulletSystem = FreeBulletSystem()
+        collisionSystem = CollisionSystem()
 
         engine.addSystem(textureRenderSystem)
         engine.addSystem(velocitySystem)
         engine.addSystem(freeBulletSystem)
+        engine.addSystem(collisionSystem)
 
         inputHandler = InputHandler()
         Gdx.input.inputProcessor = inputHandler
 
+        mainMenuScreen = MainMenuScreen(this)
         gameplayScreen = GameplayScreen(this)
-        setScreen(gameplayScreen)
+
+        setScreen(mainMenuScreen)
     }
 
     override fun render() {

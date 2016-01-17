@@ -28,7 +28,7 @@ class FreeBulletSystem() : EntitySystem() {
             val sizeComponent = Mappers.SIZE_MAPPER.get(entity)
             val bulletComponent = Mappers.BULLET_MAPPER.get(entity)
 
-            val bulletBox = Rectangle(positionComponent.position.x, positionComponent.position.y,
+            val bulletBox = Rectangle(positionComponent.position!!.x, positionComponent.position!!.y,
                     sizeComponent.width, sizeComponent.height)
 
             val screenBox = Rectangle(0f, 0f, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())

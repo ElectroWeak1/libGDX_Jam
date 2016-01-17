@@ -5,7 +5,10 @@ import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.ashley.core.Family
 import com.badlogic.ashley.utils.ImmutableArray
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.g2d.ParticleEffect
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.utils.TimeUtils
 import com.electroweak.game.entity.component.PositionComponent
 import com.electroweak.game.entity.component.SizeComponent
 import com.electroweak.game.entity.component.TextureComponent
@@ -28,7 +31,7 @@ class TextureRenderSystem : EntitySystem() {
             var sizeComponent = Mappers.SIZE_MAPPER.get(entity)
             var rotationComponent = Mappers.ROTATION_MAPPER.get(entity)
 
-            batch.draw(textureComponent.textureRegion, positionComponent.position.x, positionComponent.position.y,
+            batch.draw(textureComponent.textureRegion, positionComponent.position!!.x, positionComponent.position!!.y,
                     sizeComponent.width / 2f, sizeComponent.height / 2f, sizeComponent.width, sizeComponent.height
                     , sizeComponent.scaleX, sizeComponent.scaleY, rotationComponent.rotation, rotationComponent.clockwise)
         }

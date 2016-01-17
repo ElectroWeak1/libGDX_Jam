@@ -2,6 +2,7 @@ package com.electroweak.game.asset
 
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.kotcrab.vis.ui.VisUI
@@ -9,6 +10,7 @@ import com.kotcrab.vis.ui.VisUI
 object Assets {
 
     val SPRITE_SHEET: String = "spritesheet.atlas";
+    val BIG_FONT: String = "gothic.fnt"
 
     var assetManager: AssetManager = AssetManager();
 
@@ -33,7 +35,7 @@ object Assets {
     }
 
     fun loadAllResources() {
-        VisUI.load()
+        VisUI.load(VisUI.SkinScale.X2)
 
         assetManager.load(SPRITE_SHEET, TextureAtlas::class.java)
 
@@ -42,6 +44,8 @@ object Assets {
                 assetManager.load(resource.resourceName, Texture::class.java)
             }
         }
+
+        assetManager.load(BIG_FONT, BitmapFont::class.java)
 
         assetManager.finishLoading()
     }
@@ -52,6 +56,8 @@ object Assets {
 
     fun getAtlasRegion(resource: Resource) : TextureAtlas.AtlasRegion = assetManager.get(SPRITE_SHEET, TextureAtlas::class.java)
             .findRegion(resource.resourceName)
+
+    fun getBigFont() : BitmapFont = assetManager.get(BIG_FONT)
 
     fun dispose() {
         VisUI.dispose()

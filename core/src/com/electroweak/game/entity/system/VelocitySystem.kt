@@ -21,7 +21,7 @@ class VelocitySystem : EntitySystem() {
             var positionComponent = Mappers.POSITION_MAPPER.get(entity)
             var velocityComponent = Mappers.VELOCITY_MAPPER.get(entity)
 
-            positionComponent.position.add(velocityComponent.velocity)
+            positionComponent.position!!.add(velocityComponent.velocity)
         }
     }
 

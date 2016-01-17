@@ -85,6 +85,6 @@ class Cannon(val cannonType: CannonType) : Entity() {
         return mousePosition.sub(Globals.SCREEN_CENTER.cpy()).nor()
     }
 
-    fun getPosition() : Vector2 = Mappers.POSITION_MAPPER.get(this).position.cpy()
+    fun getPosition() : Vector2 = Mappers.POSITION_MAPPER.get(this).position!!.cpy()
 
 }

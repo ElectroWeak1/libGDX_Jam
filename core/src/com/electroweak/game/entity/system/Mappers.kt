@@ -11,5 +11,6 @@ object Mappers {
     var ROTATION_MAPPER: ComponentMapper<RotationComponent> = ComponentMapper.getFor(RotationComponent::class.java)
     var VELOCITY_MAPPER: ComponentMapper<VelocityComponent> = ComponentMapper.getFor(VelocityComponent::class.java)
     var BULLET_MAPPER: ComponentMapper<BulletComponent> = ComponentMapper.getFor(BulletComponent::class.java)
+    var COLLISION_MAPPER: ComponentMapper<CollisionComponent> = ComponentMapper.getFor(CollisionComponent::class.java)
 
 }

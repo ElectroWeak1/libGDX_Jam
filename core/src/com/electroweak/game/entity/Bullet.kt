@@ -22,6 +22,7 @@ class Bullet(val bulletDamage: BulletDamage) : Entity() {
         val rotationComponent = RotationComponent()
         val bulletComponent = BulletComponent()
         val velocityComponent = VelocityComponent()
+        val collisionComponent = CollisionComponent()
 
         textureComponent.textureRegion = Assets.getAtlasRegion(Assets.Resource.BULLET)
 
@@ -32,12 +33,19 @@ class Bullet(val bulletDamage: BulletDamage) : Entity() {
 
         bulletComponent.damage = bulletDamage.damage
 
+        collisionComponent.collisionHandler = object : CollisionHandler {
+            override fun collision(owner: Entity, entity: Entity) {
+
+            }
+        }
+
         add(textureComponent)
         add(positionComponent)
         add(sizeComponent)
         add(rotationComponent)
         add(bulletComponent)
         add(velocityComponent)
+        add(collisionComponent)
     }
 
     fun setPosition(position: Vector2) {
@@ -59,7 +67,7 @@ class Bullet(val bulletDamage: BulletDamage) : Entity() {
         Mappers.ROTATION_MAPPER.get(this).rotation = rotation
     }
 
-    fun getPosition() : Vector2 = Mappers.POSITION_MAPPER.get(this).position.cpy()
+    fun getPosition() : Vector2 = Mappers.POSITION_MAPPER.get(this).position!!.cpy()
 
     fun getWidth() : Float = Mappers.SIZE_MAPPER.get(this).width
 
